@@ -14,7 +14,7 @@ export async function signUp(formData: FormData) {
     return { error: "Email and password are required" };
   }
 
-  const { error } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
@@ -26,6 +26,13 @@ export async function signUp(formData: FormData) {
     return { error: error.message };
   }
 
+  // Auto sign in after signup (works if email confirmation is disabled in Supabase)
+  if (data.session) {
+    revalidatePath("/", "layout");
+    redirect("/dashboard");
+  }
+
+  // If email confirmation is required
   redirect("/auth/verify-email");
 }
 
