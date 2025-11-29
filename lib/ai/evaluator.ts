@@ -47,7 +47,7 @@ export async function evaluateTask(
       const userPrompt = buildUserPrompt(input);
 
       const completion = await openai.chat.completions.create({
-        model: "gpt-4-turbo-preview",
+        model: "gpt-4o-mini",
         messages: [
           { role: "system", content: SYSTEM_PROMPT },
           { role: "user", content: userPrompt },

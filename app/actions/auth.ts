@@ -14,6 +14,16 @@ export async function signUp(formData: FormData) {
     return { error: "Email and password are required" };
   }
 
+  // Validate email format
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return { error: "Please enter a valid email address" };
+  }
+
+  if (password.length < 6) {
+    return { error: "Password must be at least 6 characters long" };
+  }
+
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
@@ -24,6 +34,13 @@ export async function signUp(formData: FormData) {
 
   if (error) {
     return { error: error.message };
+  }
+
+  // Check if user already exists
+  if (data.user && !data.session) {
+    return {
+      error: "User already registered. Please check your email or sign in.",
+    };
   }
 
   // Auto sign in after signup (works if email confirmation is disabled in Supabase)

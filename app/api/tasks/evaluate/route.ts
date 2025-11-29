@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
-import { evaluateTask } from "@/lib/ai/evaluator";
+// Switch between real and mock evaluator
+// import { evaluateTask } from "@/lib/ai/evaluator"; // Real OpenAI
+import { evaluateTask } from "@/lib/ai/mock-evaluator"; // Mock for testing
 
 export async function POST(request: NextRequest) {
   try {
