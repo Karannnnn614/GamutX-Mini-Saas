@@ -6,10 +6,14 @@
 // 4. useState without proper initialization
 // 5. Typo in function name
 
+/* eslint-disable react/jsx-key */
+/* eslint-disable react/jsx-no-undef */
+
 "use client";
 
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 interface BuggyCardProps {
   title: string;
@@ -19,8 +23,8 @@ interface BuggyCardProps {
 
 export function BuggyCard({ title, items, onItemClick }: BuggyCardProps) {
   // BUG: useState without proper type and initialization
-  const [selectedIndex, setSelectedIndex] = useState();
-  const [isLoadin, setIsLoading] = useState(false); // BUG: Typo in variable name
+  const [selectedIndex, setSelectedIndex] = useState<any>();
+  const [isLoadin, setIsLoading] = useState<any>(false); // BUG: Typo in variable name
 
   // BUG: Function uses wrong variable name
   const handleItemClicks = (index: number) => {

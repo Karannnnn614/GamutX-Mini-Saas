@@ -67,6 +67,11 @@ export default function TaskPage() {
     }
   };
 
+  useEffect(() => {
+    loadTask();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [taskId]);
+
   const handleEvaluate = async () => {
     setIsEvaluating(true);
     try {
