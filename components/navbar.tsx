@@ -20,12 +20,16 @@ export function Navbar() {
   }
 
   return (
-    <nav className="border-b bg-background">
+    <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          <Link href="/dashboard" className="flex items-center space-x-2">
-            <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600" />
-            <span className="text-xl font-bold">Smart Task Evaluator</span>
+          <Link href="/dashboard" className="flex items-center space-x-3 group">
+            <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 shadow-lg group-hover:shadow-xl transition-shadow duration-200 flex items-center justify-center">
+              <span className="text-white font-bold text-lg">SE</span>
+            </div>
+            <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Smart Task Evaluator
+            </span>
           </Link>
 
           <div className="flex items-center space-x-4">
